@@ -3,9 +3,9 @@
  * Plugin Name: Leadinfo
  * Plugin URI: https://wordpress.org/plugins/leadinfo/
  * Description: Leadinfo Plugin
- * Version: 1.1
+ * Version: 2.1
  * Author: Leadinfo
- * Author URI:  https://www.leadinfo.com/
+ * Author URI: https://www.leadinfo.com/
  * Copyright 2018
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,54 +22,52 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-if (!defined('WPINC')) {
+
+
+// Deny direct access to plugin files!!
+if (!defined('WPINC') || !defined('ABSPATH')) {
     exit;
 }
+
 require_once plugin_dir_path(__FILE__) . 'leadinfo.class.php';
+require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/api/rest.php';
 
-register_activation_hook(__FILE__, 'leadinfo_activate');
-register_deactivation_hook(__FILE__, 'leadinfo_deactivate');
-register_uninstall_hook(__FILE__, 'leadinfo_uninstall');
 
-add_action('rest_api_init', function () {
-    register_rest_route('/leadinfo/v1', '/tracker_code', array(
-        'methods' => 'POST',
-        'callback' => 'add_leadinfo_tracker_code',
-    ));
-});
+$pluginName = plugin_basename(__FILE__);
 
-function add_leadinfo_tracker_code($data) {
-    if(empty($data['tracker_code'])){
-        return;
-    }
-
-    update_option('leadinfo_id', $data['tracker_code']);
-}
 
 $leadinfo = new Leadinfo();
 $leadinfo->run();
 
-function leadinfo_activate()
+
+// Register plugin activation hook
+register_activation_hook(__FILE__, 'leadinfo_activate');
+function leadinfo_activate(): void
 {
     add_option('leadinfo_id', '', '', 'yes');
 }
-//test
-function leadinfo_deactivate()
+
+// Register plugin deactivation hook
+register_deactivation_hook(__FILE__, 'leadinfo_deactivate');
+function leadinfo_deactivate(): void
 {
     delete_option('leadinfo_id');
 }
 
-function leadinfo_uninstall()
+// Register plugin uninstall hook
+register_uninstall_hook(__FILE__, 'leadinfo_uninstall');
+function leadinfo_uninstall(): void
 {
     delete_option('leadinfo_id');
 }
 
+
+// Generate settings link in menu
+add_filter("plugin_action_links_" . $pluginName, 'leadinfo_settings_link');
 function leadinfo_settings_link($links)
 {
     $settings_link = '<a href=' . admin_url("admin.php?page=leadinfo>Settings") . '</a>';
     array_unshift($links, $settings_link);
     return $links;
 }
-
-$plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_" . $plugin, 'leadinfo_settings_link');
