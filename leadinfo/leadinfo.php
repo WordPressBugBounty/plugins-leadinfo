@@ -3,7 +3,7 @@
  * Plugin Name: Leadinfo
  * Plugin URI: https://wordpress.org/plugins/leadinfo/
  * Description: Leadinfo Plugin
- * Version: 2.1
+ * Version: 2.1.2
  * Author: Leadinfo
  * Author URI: https://www.leadinfo.com/
  * Copyright 2018
@@ -43,21 +43,21 @@ $leadinfo->run();
 
 // Register plugin activation hook
 register_activation_hook(__FILE__, 'leadinfo_activate');
-function leadinfo_activate(): void
+function leadinfo_activate()
 {
     add_option('leadinfo_id', '', '', 'yes');
 }
 
 // Register plugin deactivation hook
 register_deactivation_hook(__FILE__, 'leadinfo_deactivate');
-function leadinfo_deactivate(): void
+function leadinfo_deactivate()
 {
     delete_option('leadinfo_id');
 }
 
 // Register plugin uninstall hook
 register_uninstall_hook(__FILE__, 'leadinfo_uninstall');
-function leadinfo_uninstall(): void
+function leadinfo_uninstall()
 {
     delete_option('leadinfo_id');
 }

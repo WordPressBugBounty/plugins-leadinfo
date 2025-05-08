@@ -11,7 +11,7 @@ if (!class_exists('Leadinfo')) {
     {
 
         // Insert tracking code
-        public static function register_plugin_scripts(): void
+        public static function register_plugin_scripts()
         {
             if (is_admin()) {
                 return;

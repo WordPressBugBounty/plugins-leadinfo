@@ -7,7 +7,7 @@ if (!defined('WPINC') || !defined('ABSPATH')) {
 
 
 // Check user rights and update leadinfo_id option in database
-function update_leadinfo_id(string $id): bool
+function update_leadinfo_id($id)
 {
 
     if (empty($id) || !validate_leadinfo_id($id)) {
@@ -19,7 +19,7 @@ function update_leadinfo_id(string $id): bool
 }
 
 // Check if leadinfo_id is valid
-function validate_leadinfo_id(string $id): bool
+function validate_leadinfo_id($id)
 {
     if (empty($id)) {
         return false;
