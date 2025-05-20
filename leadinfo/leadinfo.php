@@ -3,7 +3,7 @@
  * Plugin Name: Leadinfo
  * Plugin URI: https://wordpress.org/plugins/leadinfo/
  * Description: Leadinfo Plugin
- * Version: 2.1.2
+ * Version: 2.1.4
  * Author: Leadinfo
  * Author URI: https://www.leadinfo.com/
  * Copyright 2018

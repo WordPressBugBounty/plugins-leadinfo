@@ -2,8 +2,8 @@
 Contributors: Leadinfo
 Tags: leadinfo, lead, leads, b2b
 Requires at least: 3.0.1
-Tested up to: 6.4.3
-Stable tag: 2.1.2
+Tested up to: 6.8.1
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This plugin can be used to add the Leadinfo tracking code to a Wordpress site
@@ -28,6 +28,12 @@ Configuration Options
 = Do i need an Leadinfo account to use this plugin =
 Yes, if you don't have an account yet get one free at [Leadinfo.com](https://www.leadinfo.com)
 == Changelog ==
+= 2.1.3 =
+* Tested with the latest version of WordPress
+= 2.1.2 =
+* Fixed rest endpoint authentication
+= 2.1.1 =
+* Fixed typings
 = 2.1 =
 * Rewrite plugin
 * Organized file structure
